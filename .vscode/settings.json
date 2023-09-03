@@ -1,0 +1,31 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "sumof100nump2": "c",
+        "*.tcc": "cpp",
+        "cassert": "cpp",
+        "cctype": "cpp",
+        "climits": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "cstdarg": "cpp",
+        "cstddef": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "exception": "cpp",
+        "iosfwd": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "typeinfo": "cpp",
+        "utility": "cpp",
+        "type_traits": "cpp",
+        "initializer_list": "cpp",
+        "cinttypes": "cpp",
+        "cstdint": "cpp"
+    },
+    "python.analysis.typeCheckingMode": "off"
+}

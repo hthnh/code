@@ -1,0 +1,32 @@
+hovaten:hai thinh
+lop:11a6
+maso:25
+
+hovaten:tue anh
+lop:11a6
+maso:3
+
+ho va ten: hthnh
+lop: 11A06
+ma so: 4
+
+ho va ten: haithi
+lop: qrqr
+ma so: 12
+
+ho va ten: dinh
+lop: 11A1
+ma so: 6
+
+ho va ten: Dçnh
+lop: 11
+ma so: 32
+
+ho va ten: DINHHHHHHHHHH
+lop: khang
+ma so: 0
+
+ho va ten: DINHHHHHH
+lop: khang
+ma so: 15
+
