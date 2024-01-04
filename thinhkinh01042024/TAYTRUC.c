@@ -2,15 +2,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 int so_chua,*vi_tri_chua,S = 0;
-float input(){
+void input(){
     FILE *f = fopen("TAYTRUC.INP","r");
     int so_ho_lo,sum = 0;
     fscanf(f,"%d %d",&so_chua,&so_ho_lo);
     vi_tri_chua = (int *)calloc(so_chua,sizeof(int));
     for(int i = 0; i < so_chua; i++) fscanf(f,"%d",vi_tri_chua+i);
     fclose(f);
-    for(int i = 0; i < so_chua; i++) sum+=*(vi_tri_chua+i);
-    return sum/so_chua;
 }
 bool bo_qua_chua(int i, int so_ho_lo){
     int sum = 0, sum1 = 0;
@@ -18,7 +16,6 @@ bool bo_qua_chua(int i, int so_ho_lo){
     for(int j = i+so_ho_lo;j < so_ho_lo*2+i;j++) sum1+=*(vi_tri_chua+j);
     if(sum1 > sum ) return true;
     else return false;
-
 }
 void output(){
     FILE *f = fopen("TAYTRUC.OUT","w");
@@ -26,9 +23,7 @@ void output(){
     fclose(f);
 }
 int main(){
-    int so_ho_lo_dang_co = 0,avg;
-    bool co_the_lay;
-    avg = (int)input();
+    int so_ho_lo_dang_co = 0,avg;bool co_the_lay;input();
     for(int i = 0; i < so_chua-1;i++){
         if(*(vi_tri_chua+i) < *(vi_tri_chua+i+1)){
             if(so_ho_lo_dang_co > 0){
@@ -41,7 +36,6 @@ int main(){
                 co_the_lay = false;
                 continue;
             }
-            
         }
         else if(so_ho_lo_dang_co == 0 || co_the_lay == true){
             so_ho_lo_dang_co+=1;
@@ -50,8 +44,6 @@ int main(){
             continue;
         }
     }
-
-    output();
-    free(vi_tri_chua);
+    output();free(vi_tri_chua);
     return 0;
 }
