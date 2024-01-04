@@ -26,7 +26,8 @@
         "initializer_list": "cpp",
         "cinttypes": "cpp",
         "cstdint": "cpp",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "stdbool.h": "c"
     },
     "python.analysis.typeCheckingMode": "off"
 }
