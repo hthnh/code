@@ -90,7 +90,7 @@ int main(){
 	giv_end_of_gen();
 	loc_gen();
 	giv_end_of_gen();
-    int result[end_of_gen_0][end_of_gen_1];
+    int result[end_of_gen_0+1][end_of_gen_1+1];
 
 
     for(int i = 0; i < end_of_gen_0+1; i++){
@@ -106,6 +106,13 @@ int main(){
             }
         }
     }
+
+	for(int i = 0; i <= end_of_gen_0; i++){
+		for(int j = 0; j <= end_of_gen_1; j++){
+			printf("%d",result[i][j]);
+		}
+		printf("\n");
+	}
 	
 	output(result[end_of_gen_0][end_of_gen_1]);
 	
