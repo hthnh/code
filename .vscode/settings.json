@@ -28,7 +28,8 @@
         "cstdint": "cpp",
         "stdlib.h": "c",
         "stdbool.h": "c",
-        "functional": "c"
+        "functional": "c",
+        "stdio.h": "c"
     },
     "python.analysis.typeCheckingMode": "off"
 }
