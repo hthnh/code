@@ -6,14 +6,8 @@ int N, K ,truycap[1000];
 void input(){
     FILE *f = fopen("RATE.INP","r");
     fscanf(f,"%d %d",&N,&K);
-    char temp,temp1[2];
-    int i = -1;
-    while ((temp = fgetc(f))!= EOF){
-        if(temp != 32){
-            temp1[0] = temp;
-            truycap[i] = atoi(temp1);
-            i++;
-        }
+    for(int i = 0;  i < N; i++){
+        fscanf(f,"%d",&truycap[i]);
     }
     
     fclose(f);
