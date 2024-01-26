@@ -53,15 +53,16 @@ int visit(char c,int root){
 
 int main(){
 int so_cap = input();
-int root = 0;
+int root = 1;
 for(int i = 0;i<so_cap;i++){
     for(int j = 0;j < strlen(S[i]) ; j++){
         root = visit(S[i][j],root);
     }
+    diff_node = 0;
     for(int j = 0;j < strlen(T[i]); j++){
         root = visit(T[i][j],root);
     }
-    printf("%d\n",diff_node);
+    printf("%d\n",diff_node+1);
     diff_node = 0;
 }
 
