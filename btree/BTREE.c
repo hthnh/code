@@ -46,13 +46,6 @@ int visit(char c,int root,bool yn){
     }
     return root;
 }
-void doibien(char *p){//l1 r2 u3
-    for(int i = 0 ; i <strlen(p), i++){
-        if(p[i] == 76) p[i] = 1;
-        if(p[i] == 82) p[i] = 2;
-        if(p[i] == 85) p[i] = 3;
-    }
-}
 
 int main(){
 int so_cap = input();
