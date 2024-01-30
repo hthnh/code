@@ -6,16 +6,11 @@ bool tree[10000000];
 char **S,**T;
 int diff_node = 0;
 
-// int convert(char c){
-//     if(c == 76 ) return 1;//L
-//     if(c == 82) return 2;//R
-//     if(c == 85) return 0;//U
-//     return -1;
-// }
+
 
 int input(){
     FILE *f = fopen("BTREE.INP","r");
-    int temp;char temp1[100000];
+    int temp;char temp1[100002];
     fscanf(f,"%d",&temp);
     S = (char **)malloc(temp * sizeof(char *));
     T = (char **)malloc(temp * sizeof(char *));
@@ -32,7 +27,8 @@ int input(){
     return temp;
 }
 
-int visit(char c,int root){
+
+int visit(char c,int root,bool yn){
     if(c == 76){
         root *=2;
         if(tree[root] == 0) diff_node++;
@@ -49,6 +45,13 @@ int visit(char c,int root){
         else root = (root -1)/2;
     }
     return root;
+}
+void doibien(char *p){//l1 r2 u3
+    for(int i = 0 ; i <strlen(p), i++){
+        if(p[i] == 76) p[i] = 1;
+        if(p[i] == 82) p[i] = 2;
+        if(p[i] == 85) p[i] = 3;
+    }
 }
 
 int main(){
