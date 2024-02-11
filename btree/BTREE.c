@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 bool tree[10000000];
-char **S,**T;
+char **S,**T,**O;
 int diff_node = 0;
 
 // int convert(char c){
@@ -29,9 +29,26 @@ int input(){
         strcpy(T[i],temp1);
 
     }
+    fclose(f);
     return temp;
 }
-
+int laytohop(int vitri){
+    int vitri1 =0, vitri2 = 0;
+    for(int a = 1; a <= strlen(T[vitri]); a++){
+        O = (char **)malloc(2*sizeof(char *));
+        for(int j = 0; j < a; j++){
+            O[vitri1] = (char *)malloc(2*sizeof(char));
+            O[vitri1][vitri2] = T[vitri][j];
+            vitri2++;
+        }
+        vitri1++;
+        vitri2 = 0;
+    }
+    for(int i = 0; i < vitri1; i++){
+        printf("%s",O[i]);
+    }
+    return vitri1;
+}
 int visit(char c,int root){
     if(c == 76){
         root *=2;
@@ -58,12 +75,13 @@ for(int i = 0;i<so_cap;i++){
     for(int j = 0;j < strlen(S[i]) ; j++){
         root = visit(S[i][j],root);
     }
+    diff_node = 0;
     for(int j = 0;j < strlen(T[i]); j++){
         root = visit(T[i][j],root);
     }
-    printf("%d\n",diff_node);
+    printf("%d\n",diff_node+1);
     diff_node = 0;
 }
-
+laytohop(4);
 
 } 
