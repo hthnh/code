@@ -32,13 +32,13 @@ int visit(char c,int root,bool yn){
     if(c == 76){
         root *=2;
         if(tree[root] == 0) diff_node++;
-        tree[root] = 1;
-
+        if(yn == 1)tree[root] = 1;
     }
     if(c == 82){
         root = root*2+1;
         if(tree[root] == 0) diff_node++;
-        tree[root] = 1;
+        if(yn == 1)tree[root] = 1;
+        
     }
     if(c == 85){
         if(root % 2 == 0) root = root /2;
@@ -47,16 +47,28 @@ int visit(char c,int root,bool yn){
     return root;
 }
 
+const char* next(static char *s){
+    for(int i = strlen(s); i>=0; i--){
+        if(s[i] == 0){
+            s[i] = 1;
+            return s;
+        }else{
+            s[i] = 0;
+        }
+        return "";
+    }
+}
+
 int main(){
 int so_cap = input();
 int root = 1;
 for(int i = 0;i<so_cap;i++){
     for(int j = 0;j < strlen(S[i]) ; j++){
-        root = visit(S[i][j],root);
+        root = visit(S[i][j],root, 0);
     }
     diff_node = 0;
     for(int j = 0;j < strlen(T[i]); j++){
-        root = visit(T[i][j],root);
+        root = visit(T[i][j],root, 1);
     }
     printf("%d\n",diff_node+1);
     diff_node = 0;
