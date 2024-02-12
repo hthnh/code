@@ -44,7 +44,7 @@ int laytohop(int vitri){
     }
     return vitri1;
 }
-int visit(char c,int root){
+int visit(char c,int root, bool yn){
     if(c == 76){
         root *=2;
         if(tree[root] == 0) diff_node++;
@@ -63,13 +63,15 @@ int visit(char c,int root){
     return root;
 }
 
-const char* next(static char *s){
-    for(int i = strlen(s); i>=0; i--){
-        if(s[i] == 0){
-            s[i] = 1;
-            return s;
+const char* next(const char *s,int size){
+    static char buffer[5];
+    strcpy(buffer,s);
+    for(int i = strlen(buffer); i>=0; i--){
+        if(buffer[i] =='0'){
+            buffer[i] = '1';
+            return buffer;
         }else{
-            s[i] = 0;
+            buffer[i] = '0';
         }
         return "";
     }
@@ -89,6 +91,11 @@ for(int i = 0;i<so_cap;i++){
     printf("%d\n",diff_node+1);
     diff_node = 0;
 }
-laytohop(4);
+char* b = "000";
+for(int i = 0; i < 9; i++){
+    printf("%s\n", b);
+    puts(b);
+    b = next(b,3);
+}
 
 } 
