@@ -63,7 +63,7 @@ int visit(char c,int root, bool yn){
     return root;
 }
 
-const char* next(const char *s,int size){
+char* next(char *s,int size){
     static char buffer[5];
     strcpy(buffer,s);
     for(int i = strlen(buffer); i>=0; i--){
@@ -91,7 +91,10 @@ for(int i = 0;i<so_cap;i++){
     printf("%d\n",diff_node+1);
     diff_node = 0;
 }
-char* b = "000";
+char *b = {""};
+for(int i = 0; i <= 3; i++){
+    strcat(b,"0");
+}
 for(int i = 0; i < 9; i++){
     printf("%s\n", b);
     puts(b);
