@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-bool tree[10000000];
+#include <math.h>
+#define tr 10000
+bool tree[tr];
 char **S,**T,**O;
-int diff_node = 0;
+int diff_node = 0,max_root = 0;
 
 
 
@@ -27,23 +29,7 @@ int input(){
     fclose(f);
     return temp;
 }
-int laytohop(int vitri){
-    int vitri1 =0, vitri2 = 0;
-    for(int a = 1; a <= strlen(T[vitri]); a++){
-        O = (char **)malloc(2*sizeof(char *));
-        for(int j = 0; j < a; j++){
-            O[vitri1] = (char *)malloc(2*sizeof(char));
-            O[vitri1][vitri2] = T[vitri][j];
-            vitri2++;
-        }
-        vitri1++;
-        vitri2 = 0;
-    }
-    for(int i = 0; i < vitri1; i++){
-        printf("%s",O[i]);
-    }
-    return vitri1;
-}
+
 int visit(char c,int root, bool yn){
     if(c == 76){
         root *=2;
@@ -63,42 +49,65 @@ int visit(char c,int root, bool yn){
     return root;
 }
 
-char* next(char *s,int size){
-    static char buffer[5];
-    strcpy(buffer,s);
-    for(int i = strlen(buffer); i>=0; i--){
+    
+char* next(char* buffer){
+    for(int i = strlen(buffer) - 1; i>=0; i--){
         if(buffer[i] =='0'){
             buffer[i] = '1';
             return buffer;
         }else{
             buffer[i] = '0';
         }
-        return "";
     }
+    return "";
+}
+
+int dd(int size,int root, char *t){
+    char s[size],temp;
+    for (int i = 0; i < size; i++)
+        s[i] = '0';
+    s[size] = '\0';
+    int t_root = 0;
+    max_root = t_root;
+    for(int i = 0; i < pow(size,2); i++){
+        t_root = root;
+        for(int j = 0; j < size; j++){
+            if(s[j] == '0') temp = t[j]; else continue;
+            t_root = visit(temp,t_root,1);
+            if(max_root < t_root)max_root = t_root;
+            // printf("At t[%d] %c :t_root:%d  \n",j,t[j],t_root);
+            }
+        next(s);
+    }
+    return root;
 }
 
 int main(){
-int so_cap = input();
-int root = 1;
-for(int i = 0;i<so_cap;i++){
-    for(int j = 0;j < strlen(S[i]) ; j++){
-        root = visit(S[i][j],root, 0);
+    int so_cap = input();
+    int root = 1;
+    for(int i = 0;i<so_cap;i++){
+        root = 1;
+        memset(tree, 0, tr*sizeof(tree[0]));
+        for(int j = 0;j < strlen(S[i]) ; j++){
+            root = visit(S[i][j],root, 0);
+        }
+        diff_node = 0;
+        tree[root] = 1;
+        // printf("T[%d] = %s\n",i,T[i]);
+        root =dd(strlen(T[i]),root,T[i]);
+        
+        // root = visit(T[i][j],root, 1);
+        printf("root:%d\t",root);
+        printf("node:%d\t",diff_node);
+        diff_node = 0;
+        for(int i = 0; i <= max_root+1; i++){
+            if(tree[i] == 1)diff_node++;
+        }
+        printf("hh:%d\n",diff_node);
+        for(int i = 0; i < max_root+1; i++){
+            printf("i%d ",tree[i]);
+        }
+        printf("\n\n");
     }
-    diff_node = 0;
-    for(int j = 0;j < strlen(T[i]); j++){
-        root = visit(T[i][j],root, 1);
-    }
-    printf("%d\n",diff_node+1);
-    diff_node = 0;
-}
-char *b = {""};
-for(int i = 0; i <= 3; i++){
-    strcat(b,"0");
-}
-for(int i = 0; i < 9; i++){
-    printf("%s\n", b);
-    puts(b);
-    b = next(b,3);
-}
 
 } 
