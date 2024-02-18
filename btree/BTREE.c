@@ -3,9 +3,9 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
-#define tr 10000
+#define tr 10000000
 bool tree[tr];
-char **S,**T,**O;
+char **S,**T;
 int diff_node = 0,max_root = 0;
 
 
@@ -26,7 +26,6 @@ int input(){
         strcpy(T[i],temp1);
 
     }
-    fclose(f);
     return temp;
 }
 
@@ -43,8 +42,11 @@ int visit(char c,int root, bool yn){
         
     }
     if(c == 85){
+        if(root == 1) return root;
         if(root % 2 == 0) root = root /2;
         else root = (root -1)/2;
+        if(tree[root] == 0) diff_node++;
+        if(yn == 1)tree[root] = 1;
     }
     return root;
 }
@@ -69,45 +71,43 @@ int dd(int size,int root, char *t){
     s[size] = '\0';
     int t_root = 0;
     max_root = t_root;
-    for(int i = 0; i < pow(size,2); i++){
+    for(int i = 0; i < pow(2,size); i++){
         t_root = root;
         for(int j = 0; j < size; j++){
-            if(s[j] == '0') temp = t[j]; else continue;
+            if(s[j] == '1') temp = t[j]; else continue;
             t_root = visit(temp,t_root,1);
             if(max_root < t_root)max_root = t_root;
             // printf("At t[%d] %c :t_root:%d  \n",j,t[j],t_root);
-            }
+        }
         next(s);
     }
     return root;
+}
+void output(){
+
 }
 
 int main(){
     int so_cap = input();
     int root = 1;
+    FILE *f = fopen("BTREE.OUT","w");
     for(int i = 0;i<so_cap;i++){
         root = 1;
         memset(tree, 0, tr*sizeof(tree[0]));
         for(int j = 0;j < strlen(S[i]) ; j++){
             root = visit(S[i][j],root, 0);
         }
-        diff_node = 0;
+        diff_node = 1;
         tree[root] = 1;
-        // printf("T[%d] = %s\n",i,T[i]);
         root =dd(strlen(T[i]),root,T[i]);
-        
-        // root = visit(T[i][j],root, 1);
-        printf("root:%d\t",root);
-        printf("node:%d\t",diff_node);
         diff_node = 0;
-        for(int i = 0; i <= max_root+1; i++){
+        for(int i = 0; i < max_root +10; i++)
             if(tree[i] == 1)diff_node++;
-        }
-        printf("hh:%d\n",diff_node);
-        for(int i = 0; i < max_root+1; i++){
-            printf("i%d ",tree[i]);
-        }
-        printf("\n\n");
-    }
 
-} 
+        fprintf(f,"%d  ",diff_node);
+    }
+    fclose(f);
+    free(T);
+    free(S);
+
+}
