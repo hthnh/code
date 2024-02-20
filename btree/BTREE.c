@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <math.h>
+#include <math.h>w
 #define tr 10000000
 bool tree[tr];
 char **S,**T;
@@ -14,7 +14,7 @@ int input(){
     FILE *f = fopen("BTREE.INP","r");
     int temp;char temp1[100002];
     fscanf(f,"%d",&temp);
-    S = (char **)malloc(temp * sizeof(char *));
+    S = (char **)malloc(temp * sizeof(z));
     T = (char **)malloc(temp * sizeof(char *));
     for(int i = 0; i < temp; i++){
         fscanf(f,"%s",temp1);
@@ -61,7 +61,7 @@ char* next(char* buffer){
             buffer[i] = '0';
         }
     }
-    return "";
+    return NULL;
 }
 
 int dd(int size,int root, char *t){
