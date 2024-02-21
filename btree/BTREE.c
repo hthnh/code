@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <math.h>w
+#include <math.h>
 #define tr 10000000
 bool tree[tr];
 char **S,**T;
