@@ -7,15 +7,18 @@ struct Node{
     struct Node *Left, *Right;
 };
 
-typedef struct Node* Tree;
+typedef struct Node *Tree;
 
-struct Node* add_Node(struct Node *p, item x){
+struct Node* makeNode(struct Node *p, item x){
     p = (struct Node*)malloc(sizeof(struc Node));
     p->key = x;
     p->Left = p->Right = NULL;
     return p;
 }
 
-struct Node* create_Tree(Tree T, item x){
-    
+struct Node*  CreateTree(struct Node *p,item x){   
+    p=  makeNode(p,x);
+    p->Left=CreateTree(p->Left,x);
+    p->Right=CreateTree(p->Right,x);
+    return p;       
 }
