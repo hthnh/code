@@ -13,7 +13,7 @@ int input(){
     FILE *f = fopen("BTREE.INP","r");
     int temp;char temp1[100002];
     fscanf(f,"%d",&temp);
-    S = (char **)malloc(temp * sizeof(z));
+    S = (char **)malloc(temp * sizeof(char *));
     T = (char **)malloc(temp * sizeof(char *));
     for(int i = 0; i < temp; i++){
         fscanf(f,"%s",temp1);
@@ -82,14 +82,16 @@ int dd(int size,int root, char *t){
     }
     return root;
 }
-void output(){
-
+void output(int x){
+    FILE *f = fopen("BTREE.OUT","w");
+    fprintf(f,"%d  ",x);
+    fclose(f);
 }
 
 int main(){
     int so_cap = input();
     int root = 1;
-    FILE *f = fopen("BTREE.OUT","w");
+
     for(int i = 0;i<so_cap;i++){
         root = 1;
         memset(tree, 0, tr*sizeof(tree[0]));
@@ -103,9 +105,8 @@ int main(){
         for(int i = 0; i < max_root +10; i++)
             if(tree[i] == 1)diff_node++;
 
-        fprintf(f,"%d  ",diff_node);
+        output(diff_node);
     }
-    fclose(f);
     free(T);
     free(S);
 
