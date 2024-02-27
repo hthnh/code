@@ -19,15 +19,10 @@ void output(){
     FILE *f = fopen("BANTAU.OUT","w");
     fclose(f);
 }
-
-
-
-int main(){
-
-    input();
-    int x = 0;
+void aa(int start, int end){
+    int x = start;
     int temp;
-    for(int y = 0; y < num_of_ship; y++){
+    for(int y = start; y < end; y++){
         temp = di[y];
         for(int i = y; i >= 0; i--){
             if(temp < di[i]){
@@ -36,7 +31,19 @@ int main(){
             }
             if(temp >= di[i]) point[i] = temp - di[i];
         }
+        if(start == end) return;
+        aa(start +1,end);
     }
+    return;
+}
+
+
+int main(){
+
+    input();
+    int start = 0, end = num_of_ship;
+
+    aa(start,end);
     for(int i = 0; i < num_of_ship; i++){
         printf("%d ",point[i]);
     }
