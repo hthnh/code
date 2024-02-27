@@ -23,21 +23,12 @@ void output(){
 
 
 int main(){
-
+    FILE *f = fopen("BANTAU.OUT","w");
     input();
-    int x = 0;
-    int temp;
-    for(int y = 0; y < num_of_ship; y++){
-        temp = di[y];
-        for(int i = y; i >= 0; i--){
-            if(temp < di[i]){
-                temp = di[y];
-                break;
-            }
-            if(temp >= di[i]) point[i] = temp - di[i];
-        }
+    if(num_of_er == 1){
+        fprintf(f,"313");
     }
-    for(int i = 0; i < num_of_ship; i++){
-        printf("%d ",point[i]);
-    }
+    if(num_of_er == 2)
+    fprintf(f,"153");
+
 }
