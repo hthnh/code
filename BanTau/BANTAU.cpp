@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #define max 450
 int num_of_er; // energy recharge
-int num_of_ship,h = 0;
+int num_of_ship,dem = 0;
 int di[max],dt[max], point[max],result,pro[2][max];
 
 void input(){
@@ -17,6 +17,7 @@ void input(){
 
 void output(){
     FILE *f = fopen("BANTAU.OUT","w");
+    fprintf(f, "%d", dem);
     fclose(f);
 }
 
@@ -40,28 +41,28 @@ void sort(int *p, int num){
 }
 
 
-int aa(int sum, int *atk, int *hp, int turn){
-    if(!(turn < num_of_ship)){
-        turn--;
-        if(sum > result) result = sum;
-        return sum;
-    }
-    for(int i = 0; i < num_of_ship; i ++){
-        if(atk[i] >= hp[turn]){ 
-            sum += atk[i] - hp[turn];
-            pro[0][h] = hp[turn];
-            pro[1][h] = atk[i];
-            h++;
-            turn++;
-            sum = aa(sum, atk, hp, turn);
+int process(int a, int gt, int val, int k)
+{
+    int tam, tam1 = k;
+    for (int i = 0; i < num_of_ship; i++)
+    {
+        if (dt[i] != val) tam1 = k + 1;
+        if (dt[i] == val && i > 0) tam1 = k;
+        if (dt[i] < di[a] || a >= num_of_ship) break;
+        if (tam1 > num_of_er) continue;
+        if (dt[i] >= di[a])
+        {
+            tam = gt + dt[i] - di[a];
+            if (a == num_of_ship-1)
+            {
+                if (k == 0) dem = tam;
+                if (k != 0 && tam < dem) dem = tam; 
+            }
+            process(a+1, tam, dt[i], tam1);
         }
-        if(atk[i] < hp[turn]){
-            h = 0;
-            continue;
-        }
     }
-    return 0;
 }
+
 
 
 int main(){
@@ -70,9 +71,16 @@ int main(){
     dupl();
     sort(dt,num_of_ship);
 
-    point[0] = aa(0, dt, di, 0);
-
-    for(int i = 0; i < num_of_ship; i++){
-        printf("%d ",dt[i]);
+    for (int i = 0; i < num_of_ship; i++)
+    {
+        if (dt[i] < di[0]) break;
+        if (dt[i] >= di[0])
+        {
+            int tam;
+            tam = dt[i] - di[0];
+            process(1, tam, dt[i], 0);
+        }
     }
+    output();
+
 }
