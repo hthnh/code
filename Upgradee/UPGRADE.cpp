@@ -10,7 +10,8 @@ typedef long long ll;
 int n; // so thanh pho
 int m; // so duong
 int s = 1; // bat dau
-int result = 0,step = 0;
+int result[3][MaxN]; //0V 1U 2R
+int step = 1;
 bool mark[MaxN];
 ll dist[MaxN];
 int adj[MaxN][MaxN];
@@ -37,8 +38,10 @@ void Dijkstra(int s) {
                 ll w = adj[u][v];
                 if (dist[v] > dist[u] + w) {
                     dist[v] = dist[u] + w;
-                    step+=1;
-                    printf("%d %d \n",step, dist[v]);
+                    result[0][step] = v;
+                    result[1][step] = u;
+                    result[2][step] = dist[v];
+                    step++;
                 }
             }
         }
@@ -63,10 +66,24 @@ void output(){
         if (dist[i] == INF) {
             fprintf(f,"-1\n");
         } else {
-            fprintf(f,"%lld\n", dist[i]);            
+            fprintf(f,"%d. %lld\n",i, dist[i]);            
         }
     }
-    fprintf(f,"%d",result);
+    for(int i = 0; i < step+1; i++){
+        printf("%d. u:%d  v:%d  r:%d\n",i ,result[1][i],result[0][i], result[2][i]);
+    }
+    int temp,temp1;
+    while(1){
+        for(int i = step; i > 0; i++){
+            if(result[0][i] == n){ 
+                temp = result[1][i];
+                break;
+            }
+            temp1 = i;
+        }
+        if(result[1][temp1] == 1) break;
+    }
+    
     fclose(f);
 }
 
