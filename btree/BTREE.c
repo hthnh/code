@@ -98,7 +98,6 @@ int main(){
         for(int j = 0;j < strlen(S[i]) ; j++){
             root = visit(S[i][j],root, 0);
         }
-        diff_node = 1;
         tree[root] = 1;
         root =dd(strlen(T[i]),root,T[i]);
         diff_node = 0;
