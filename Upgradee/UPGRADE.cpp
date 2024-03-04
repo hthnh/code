@@ -62,27 +62,7 @@ void input(){
 
 void output(){
     FILE *f = fopen("UPGRADE.OUT","w");
-    for (int i = 1; i <= n; i++) {
-        if (dist[i] == INF) {
-            fprintf(f,"-1\n");
-        } else {
-            fprintf(f,"%d. %lld\n",i, dist[i]);            
-        }
-    }
-    for(int i = 0; i < step+1; i++){
-        printf("%d. u:%d  v:%d  r:%d\n",i ,result[1][i],result[0][i], result[2][i]);
-    }
-    int temp,temp1;
-    while(1){
-        for(int i = step; i > 0; i++){
-            if(result[0][i] == n){ 
-                temp = result[1][i];
-                break;
-            }
-            temp1 = i;
-        }
-        if(result[1][temp1] == 1) break;
-    }
+    
     
     fclose(f);
 }
